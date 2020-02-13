@@ -27,17 +27,17 @@ class PlaySoundsViewController: UIViewController {
     
     enum ButtonType: Int { case slow = 0, fast, chipmunk, vader, echo, reverb }
     
-    var recorderAudioURL: URL!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //setupAudio()
+        setupAudio()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureUI(.notPlaying)
     }
     @IBAction func playSoundForButton(_ sender: UIButton) {
-        print("play sound with button")
+        print("play sound with button \(sender.tag)")
         switch(ButtonType(rawValue: sender.tag)!) {
         case .slow:
             playSound(rate: 0.5)

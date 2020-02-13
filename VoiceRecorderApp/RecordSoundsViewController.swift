@@ -22,6 +22,13 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         // Do any additional setup after loading the view.
         btnStopRecord.isEnabled = false
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "stopRecording" {
+            let playSoundsVC = segue.destination as! PlaySoundsViewController
+            let recorderAudioUrl = sender as! URL
+            playSoundsVC.recordedAudioURL = recorderAudioUrl
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -70,13 +77,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         }
         else{
             print("Recording was not successfull")
-        }
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "stopRecording" {
-            let playSoundsVC = segue.destination as! PlaySoundsViewController
-            let recorderAudioUrl = sender as! URL
-            playSoundsVC.recorderAudioURL = recorderAudioUrl
         }
     }
 }
